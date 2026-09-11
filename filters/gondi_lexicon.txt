@@ -1,0 +1,57 @@
+# ============================================================
+# GONDI STARTER LEXICON (v1)
+# Format:  word<TAB>meaning<TAB>source
+# "#" se shuru lines comments hain. Section: [roman] (default)
+# ya [devanagari]. Diacritics ka folded version apne aap add hota
+# hai (māne -> mane).
+#
+# Yeh sirf STARTER dictionary hai. Gondi-English dictionary se
+# isse HAMESHA badhate rahiye — jitni badi dictionary, utna
+# achha detector. Har nayi line 30 second ka kaam hai.
+# ============================================================
+
+[roman]
+gond	Gond person / hill people	Wikipedia: Gondi language (Gōṇḍ)
+gondir	Gond people (plural)	Wikipedia: Gondi language (Gōṇḍir)
+gondi	Gondi language name	Wikipedia: Gondi language (Gōṇḍī)
+koi	native name of the Gondi language	Wikipedia: Gondi language (Kōī)
+koitor	native name (the Gond language)	Wikipedia: Gondi language (Kōītōr)
+koitur	native name variant	Wikipedia: Gondi language (Koitur)
+kond	hill — Dravidian root of Gond	Wikipedia: Gondi language (etymology)
+gondwana	Gond country / region	Wikipedia: Gondi language (Gōṇḍvana)
+masaram	Masaram Gondi script name	Wikipedia: Gondi writing
+saga	kin / kith and kin	Gondwana Gondi Language channel (सगा जनो)
+sagao	kin (vocative)	Gondwana Gondi Language channel (सगाओ)
+aru	and	Wikipedia UDHR Gondi sample (अरु)
+sab	all	Wikipedia UDHR Gondi sample (सब्)
+mane	human / person	Wikipedia UDHR Gondi sample (मāne)
+gaurav	honour, dignity	Wikipedia UDHR Gondi sample (गौरव्)
+adhikar	right, rights (Gondi spelling)	Wikipedia UDHR Gondi sample (अधिकार्)
+nar	village	Wikipedia morphology (na:r)
+kay	hand	Wikipedia morphology (kay)
+bhayi	brother	Wikipedia UDHR Gondi sample (भायि)
+hak	right	Wikipedia UDHR Gondi sample (हक्)
+tottor	ancestor	Wikipedia morphology (tottōr)
+tottur	ancestors (plural)	Wikipedia morphology (tottūr)
+kandi	boy	Wikipedia morphology (kānḍī)
+kalile	thief	Wikipedia morphology (kallē)
+lehka	to write	Wikipedia UDHR Gondi sample (लेह्का)
+bevhar	need, necessity	Wikipedia UDHR Gondi sample (बेव्हार्)
+kiyanā	to do (should do)	Wikipedia UDHR Gondi sample (कियाना)
+aven	they (proximal)	Wikipedia UDHR Gondi sample (अवेन्)
+
+[devanagari]
+अरु	and	Wikipedia UDHR Gondi sample
+सब्	all	Wikipedia UDHR Gondi sample
+माने	human / person	Wikipedia UDHR Gondi sample
+गौरव्	honour, dignity	Wikipedia UDHR Gondi sample
+अधिकार्	right (Gondi spelling)	Wikipedia UDHR Gondi sample
+हक्	right	Wikipedia UDHR Gondi sample
+भायि	brother	Wikipedia UDHR Gondi sample
+कोइटर	native name of Gondi language	Wikipedia
+गोंडी	Gondi language	Wikipedia (गोण्डि)
+गोंड	Gond person / hill people	Wikipedia
+गोंडवाना	Gondwana region	Wikipedia
+सुतन्तर्ता	independence, freedom	Wikipedia UDHR Gondi sample
+जनंजात्	born, birth	Wikipedia UDHR Gondi sample
+बराबर्	equal	Wikipedia UDHR Gondi sample

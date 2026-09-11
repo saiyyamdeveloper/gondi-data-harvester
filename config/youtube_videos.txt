@@ -1,0 +1,15 @@
+# YouTube Gondi videos — ek line mein ek video URL ya 11-char video ID.
+# "#" se shuru hone wali lines ignore hoti hain.
+#
+# Real Gondi channels se start kiye gaye (in channels pe aur videos dhundho
+# aur unke links yahan paste kar do):
+#   - "Gondi Bhasha Sikhen" (ajay gote)
+#   - "Gondwana Gondi Language" (youtube.com/c/GONDWANAGONDILANGUAGE)
+#   - "Gondwana Dhamal"
+UfSetAy1ysU
+oQzrQdhCmcs
+T1IlI_hmO4U
+lsmBF1tHY00
+
+# Example (paste aise hi):
+# https://www.youtube.com/watch?v=XXXXXXXXXXX

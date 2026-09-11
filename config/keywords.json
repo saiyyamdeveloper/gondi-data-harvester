@@ -1,0 +1,8 @@
+{
+  "youtube_search": [
+    "Gondi bhasha",
+    "Masaram Gondi lipi",
+    "गोंडी भाषा"
+  ],
+  "notes": "YOUTUBE_API_KEY (GitHub secret ya env var) set karne par hi YouTube search chalta hai. Bina key ke config/youtube_videos.txt se direct collect hota hai."
+}

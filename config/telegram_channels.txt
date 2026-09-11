@@ -1,0 +1,11 @@
+# Public Telegram channels — ek line mein ek channel.
+# "xyz" ya "@xyz" ya "t.me/xyz" — teeno chalega.
+# SIRF PUBLIC channels milte hain (t.me/s/xyz web preview se).
+#
+# Neeche wala sirf TEST hai — uska content Gondi nahi hai,
+# isliye detector use "other" mark karega. Pipeline demo ke liye useful hai.
+gondwana_papers
+
+# Apne Gondi channels yahan add karo, e.g.:
+# mygondichannel
+# gondibhasha

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gondi Data Harvester — Corpus Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Masaram+Gondi&family=Noto+Sans+Devanagari:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1020; --card:#131a2e; --card2:#1a2340; --line:#26325a;
+    --text:#e8ecf8; --muted:#93a0c2; --accent:#34d399; --accent2:#818cf8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    background:radial-gradient(1200px 500px at 70% -10%, #1b2547 0%, var(--bg) 55%);
+    color:var(--text);
+    font-family:Inter, "Noto Sans Devanagari", system-ui, sans-serif;
+    min-height:100vh; padding:28px 20px 60px;
+  }
+  .wrap{max-width:1100px; margin:0 auto}
+  header{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px}
+  h1{font-size:26px; font-weight:800; letter-spacing:.2px}
+  h1 .script{font-family:"Noto Sans Masaram Gondi", "Noto Sans Devanagari", serif; color:var(--accent); font-size:30px}
+  .sub{color:var(--muted); font-size:14px; margin-bottom:22px}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:12px; margin-bottom:22px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px}
+  .card .num{font-size:26px; font-weight:800}
+  .card .lbl{color:var(--muted); font-size:12.5px; margin-top:3px}
+  .card.hl .num{color:var(--accent)}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px}
+  @media (max-width:760px){.cols{grid-template-columns:1fr}}
+  section.panel{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:22px}
+  section.panel h2{font-size:14px; color:var(--muted); font-weight:600; margin-bottom:12px; text-transform:uppercase; letter-spacing:.6px}
+  .bar{margin-bottom:10px}
+  .bar .row{display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px}
+  .bar .row .n{color:var(--muted)}
+  .track{height:10px; background:var(--card2); border-radius:6px; overflow:hidden}
+  .fill{height:100%; border-radius:6px}
+  table{width:100%; border-collapse:collapse; font-size:13.5px}
+  th{color:var(--muted); text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.6px; padding:6px 8px; border-bottom:1px solid var(--line)}
+  td{padding:9px 8px; border-bottom:1px solid var(--line); vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .badge{display:inline-block; padding:2px 9px; border-radius:99px; font-size:11.5px; font-weight:600; white-space:nowrap}
+  .yt{background:#3b1220; color:#ff8fa3}.tg{background:#0c2a3a; color:#7dd3fc}
+  .fb{background:#12233d; color:#93c5fd}.ig{background:#33152a; color:#f9a8d4}
+  .mn{background:#22294a; color:#c3cbe8}
+  .lang{font-size:12px; color:var(--muted); white-space:nowrap}
+  .prev{color:#c9d2ee; line-height:1.45; max-width:430px}
+  a{color:var(--accent2); text-decoration:none} a:hover{text-decoration:underline}
+  .note{background:#10233a; border:1px solid #1f4a6d; color:#9fd0ff; border-radius:10px; padding:9px 12px; font-size:13px; margin-bottom:18px}
+  .empty,.err{color:var(--muted); padding:30px; text-align:center; font-size:15px}
+  .err{color:#fca5a5}
+  footer{color:var(--muted); font-size:12.5px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+  /* Data Browser */
+  .controls{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; align-items:center}
+  .controls input[type=search]{flex:1; min-width:200px; background:var(--card2); border:1px solid var(--line); color:var(--text); border-radius:10px; padding:9px 12px; font-size:14px}
+  .controls input[type=search]::placeholder{color:#6d789c}
+  .controls select{background:var(--card2); border:1px solid var(--line); color:var(--text); border-radius:10px; padding:9px 10px; font-size:13.5px}
+  .btn{background:var(--card2); border:1px solid var(--line); color:var(--text); border-radius:10px; padding:8px 14px; font-size:13.5px; cursor:pointer}
+  .btn:hover:not(:disabled){border-color:var(--accent2)}
+  .btn:disabled{opacity:.4; cursor:default}
+  .dl{margin-left:auto; font-size:13px; padding:8px 14px; border-radius:10px; background:#12291f; border:1px solid #1f4a33; color:#7ee2a8; white-space:nowrap}
+  .pager{display:flex; gap:10px; align-items:center; margin-top:14px; font-size:13px; color:var(--muted); flex-wrap:wrap}
+  .txt{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; cursor:pointer; line-height:1.5; max-width:470px; color:#c9d2ee}
+  .txt.exp{display:block; white-space:pre-wrap; -webkit-line-clamp:unset}
+  .sample-tag{display:inline-block; margin-top:4px; font-size:10.5px; color:#8b93b8; border:1px solid var(--line); padding:1px 7px; border-radius:99px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Gondi <span class="script">𑴎</span> Data Harvester</h1>
+  </header>
+  <p class="sub">Masaram Gondi Digital Corpus — v1 dashboard · data/corpus se live stats</p>
+
+  <div id="main">
+    <div class="empty" id="loading">Stats load ho rahi hain…</div>
+    <div id="content" hidden>
+      <div id="sample-note"></div>
+      <div class="cards" id="cards"></div>
+      <div class="cols">
+        <section class="panel" style="margin-bottom:0"><h2>Platform ke hisaab se</h2><div id="platform-bars"></div></section>
+        <section class="panel" style="margin-bottom:0"><h2>Bhasha detection ke hisaab se</h2><div id="lang-bars"></div></section>
+      </div>
+
+      <section class="panel" style="margin-top:22px">
+        <h2>Data Browser — sabhi posts dekho</h2>
+        <div class="controls">
+          <input type="search" id="search-input" placeholder="Text, author ya link mein search karo…">
+          <select id="plat-filter"><option value="">Sab platforms</option></select>
+          <select id="lang-filter"><option value="">Sab languages</option></select>
+          <a class="dl" id="csv-dl" href="#" download>CSV download ↓</a>
+        </div>
+        <div id="browser-count" class="lang" style="margin-bottom:10px"></div>
+        <table>
+          <thead>
+            <tr><th>Platform</th><th>Author</th><th>Date</th><th>Language</th><th>Text (click = poora dekho)</th><th>Link</th></tr>
+          </thead>
+          <tbody id="browser-body"></tbody>
+        </table>
+        <div class="pager">
+          <button class="btn" id="prev-btn">← Pichla</button>
+          <span id="page-info"></span>
+          <button class="btn" id="next-btn">Agla →</button>
+          <span id="browser-note" style="margin-left:auto"></span>
+        </div>
+      </section>
+
+      <footer>
+        <span>Gondi Data Harvester v1 · collect → detect → dedup → corpus → Cloudflare Pages</span>
+        <span id="generated-at"></span>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script>
+const LANG_NAMES = {
+  masaram_gondi: "Masaram Gondi (Unicode)",
+  gunjala_gondi: "Gunjala Gondi (Unicode)",
+  roman_gondi: "Roman Gondi",
+  devanagari_gondi: "Devanagari Gondi (Hindi mix)",
+  possible_gondi: "Possible Gondi (review)",
+  other: "Not Gondi",
+  unknown: "Unknown"
+};
+const LANG_COLORS = {
+  masaram_gondi:"#34d399", gunjala_gondi:"#2dd4bf", roman_gondi:"#fbbf24",
+  devanagari_gondi:"#fb923c", possible_gondi:"#a78bfa", other:"#64748b", unknown:"#475569"
+};
+const PLAT_COLORS = { youtube:"#ff6b81", telegram:"#38bdf8", facebook:"#60a5fa", instagram:"#f472b6", manual:"#a3a3a3" };
+const PLAT_CLS = { youtube:"yt", telegram:"tg", facebook:"fb", instagram:"ig" };
+
+const PAGE_SIZE = 25;
+let ALL_POSTS = [];
+let DATA_PREFIX = "data/";
+const state = { q:"", plat:"", lang:"", page:1 };
+
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function langName(l){ return LANG_NAMES[l] || l || "—"; }
+
+async function loadStats(){
+  for (const url of ["data/stats.json", "../data/stats.json"]) {
+    try { const r = await fetch(url); if (r.ok) return r.json(); } catch (e) { /* next */ }
+  }
+  throw new Error("stats.json nahi mila");
+}
+
+async function loadCorpus(){
+  // local (/dashboard/index.html) aur Cloudflare Pages (/index.html) dono par chale
+  for (const prefix of ["data/", "../data/"]) {
+    const url = prefix + "corpus/corpus.json";
+    try {
+      const r = await fetch(url);
+      if (r.ok) { DATA_PREFIX = prefix; return r.json(); }
+    } catch (e) { /* next */ }
+  }
+  return null;
+}
+
+function bars(el, data, colors){
+  const entries = Object.entries(data || {});
+  if(!entries.length){ el.innerHTML = '<div class="empty" style="padding:14px">Abhi data nahi</div>'; return; }
+  const max = Math.max(...entries.map(e => e[1]));
+  el.innerHTML = entries.sort((a,b)=>b[1]-a[1]).map(([k,v]) => `
+    <div class="bar">
+      <div class="row"><span>${esc(k)}</span><span class="n">${v}</span></div>
+      <div class="track"><div class="fill" style="width:${(v/max*100).toFixed(1)}%;background:${colors[k] || "#818cf8"}"></div></div>
+    </div>`).join("");
+}
+
+function render(s){
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("content").hidden = false;
+
+  const sn = document.getElementById("sample-note");
+  if(s.sample_count > 0){
+    sn.innerHTML = `<div class="note">ℹ️ Abhi ${s.sample_count} sample posts dikh rahi hain (test data). Real harvest ke baad counts badhenge.</div>`;
+  }
+
+  const cards = [
+    {num: s.total_posts, lbl: "Total Posts", hl:false},
+    {num: s.gondi_posts, lbl: "Gondi Posts", hl:true},
+    {num: s.total_words, lbl: "Total Words", hl:false},
+    {num: s.unique_words, lbl: "Unique Words", hl:false},
+    {num: s.masaram_chars, lbl: "Masaram Gondi Characters", hl:true},
+  ];
+  document.getElementById("cards").innerHTML = cards.map(c =>
+    `<div class="card${c.hl?" hl":""}"><div class="num">${c.num}</div><div class="lbl">${c.lbl}</div></div>`).join("");
+
+  bars(document.getElementById("platform-bars"), s.by_platform, PLAT_COLORS);
+  bars(document.getElementById("lang-bars"), s.by_language, LANG_COLORS);
+  document.getElementById("generated-at").textContent = "generated: " + (s.generated_at || "");
+}
+
+/* ---------------- Data Browser ---------------- */
+
+function filteredPosts(){
+  const q = state.q.trim().toLowerCase();
+  return ALL_POSTS
+    .filter(p =>
+      (!state.plat || p.platform === state.plat) &&
+      (!state.lang || p.language === state.lang) &&
+      (!q || (p.text||"").toLowerCase().includes(q) ||
+             (p.author||"").toLowerCase().includes(q) ||
+             (p.link||"").toLowerCase().includes(q))
+    )
+    .sort((a,b) => ((b.date||"") + (b.collected_at||"")).localeCompare((a.date||"") + (a.collected_at||"")));
+}
+
+function rowHtml(p){
+  const sample = (p.is_sample||"").trim().toLowerCase() === "yes" ? '<br><span class="sample-tag">sample</span>' : "";
+  return `<tr>
+    <td><span class="badge ${PLAT_CLS[p.platform] || "mn"}">${esc(p.platform)}</span></td>
+    <td>${esc(p.author) || "—"}</td>
+    <td class="lang">${esc(p.date) || "—"}</td>
+    <td class="lang">${esc(langName(p.language))}</td>
+    <td><div class="txt" title="Click karke poora text dekho">${esc(p.text)}${sample}</div></td>
+    <td>${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">open ↗</a>` : "—"}</td>
+  </tr>`;
+}
+
+function renderBrowser(){
+  const list = filteredPosts();
+  const pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+  if (state.page > pages) state.page = pages;
+  const start = (state.page - 1) * PAGE_SIZE;
+  const slice = list.slice(start, start + PAGE_SIZE);
+
+  document.getElementById("browser-count").textContent =
+    list.length + " / " + ALL_POSTS.length + " posts dikh rahi hain";
+
+  document.getElementById("browser-body").innerHTML =
+    slice.map(rowHtml).join("") ||
+    '<tr><td colspan="6" class="lang" style="padding:20px">Koi post nahi mili — search/filter badhao</td></tr>';
+
+  document.getElementById("page-info").textContent =
+    list.length ? `Page ${state.page} / ${pages}` : "Page —";
+  document.getElementById("prev-btn").disabled = state.page <= 1;
+  document.getElementById("next-btn").disabled = state.page >= pages;
+  document.getElementById("browser-note").textContent =
+    ALL_POSTS.length > 5000 ? "Bada dataset hai — search/filter se dekho" : "";
+}
+
+function initBrowser(posts){
+  ALL_POSTS = posts || [];
+  document.getElementById("csv-dl").href = DATA_PREFIX + "corpus/corpus.csv";
+
+  const plats = [...new Set(ALL_POSTS.map(p => p.platform).filter(Boolean))].sort();
+  const langs = [...new Set(ALL_POSTS.map(p => p.language).filter(Boolean))].sort();
+  const ps = document.getElementById("plat-filter");
+  plats.forEach(p => ps.insertAdjacentHTML("beforeend", `<option value="${esc(p)}">${esc(p)}</option>`));
+  const ls = document.getElementById("lang-filter");
+  langs.forEach(l => ls.insertAdjacentHTML("beforeend", `<option value="${esc(l)}">${esc(langName(l))}</option>`));
+
+  document.getElementById("search-input").addEventListener("input", e => {
+    state.q = e.target.value; state.page = 1; renderBrowser();
+  });
+  ps.addEventListener("change", e => { state.plat = e.target.value; state.page = 1; renderBrowser(); });
+  ls.addEventListener("change", e => { state.lang = e.target.value; state.page = 1; renderBrowser(); });
+  document.getElementById("prev-btn").addEventListener("click", () => { state.page--; renderBrowser(); });
+  document.getElementById("next-btn").addEventListener("click", () => { state.page++; renderBrowser(); });
+
+  renderBrowser();
+}
+
+Promise.all([loadStats(), loadCorpus()])
+  .then(([stats, posts]) => { render(stats); initBrowser(posts); })
+  .catch(err => {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("content").hidden = false;
+    document.getElementById("main").innerHTML = `
+      <div class="err" style="padding:40px; text-align:center; max-width:560px; margin:40px auto; line-height:1.8">
+        <b>Data load nahi ho paaya (${esc(err.message)})</b><br><br>
+        Hosted site: <b>https://gondi-corpus.pages.dev</b><br>
+        Local chalana ho to: <code style="background:#131a2e;padding:4px 10px;border-radius:6px">python tools/serve_dashboard.py</code>
+      </div>`;
+  });
+</script>
+</body>
+</html>

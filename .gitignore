@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+
+# NOTE: data/corpus/ COMMIT hota hai — woh hi corpus hai.
+# data/inbox/ mein aapke manual exports bhi commit hokar safe rehte hain.
+
+# Build output (wrangler deploy ke liye) — data ka original data/corpus/ mein hai
+deploy/

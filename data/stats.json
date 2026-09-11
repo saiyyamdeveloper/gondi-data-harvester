@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-09-11T06:44:12Z",
+  "total_posts": 15,
+  "gondi_posts": 5,
+  "possible_gondi": 7,
+  "by_platform": {
+    "youtube": 6,
+    "telegram": 7,
+    "facebook": 1,
+    "instagram": 1
+  },
+  "by_language": {
+    "masaram_gondi": 1,
+    "devanagari_gondi": 2,
+    "roman_gondi": 2,
+    "other": 3,
+    "possible_gondi": 7
+  },
+  "total_words": 3427,
+  "unique_words": 895,
+  "masaram_chars": 6,
+  "gunjala_chars": 0,
+  "sample_count": 5,
+  "recent": [
+    {
+      "platform": "youtube",
+      "author": "Hindi Tutorial Channel (sample)",
+      "date": "2026-09-09",
+      "language": "other",
+      "link": "https://www.youtube.com/watch?v=sample",
+      "preview": "Aaj hum baat karenge Hindi grammar ke baare mein. Yeh video aapke liye hai. Like aur subscribe karna na bhoolein."
+    },
+    {
+      "platform": "instagram",
+      "author": "@gondwana_gondi (sample)",
+      "date": "2026-09-08",
+      "language": "roman_gondi",
+      "link": "https://www.instagram.com/p/sample",
+      "preview": "Jay seva jay gondwana! Saga janon, apni gondi bhasha seekho, koitor ki apni masaram lipi seh. #GondiBhasha #MasaramGondi"
+    },
+    {
+      "platform": "facebook",
+      "author": "Gondwana Dhamal (sample)",
+      "date": "2026-09-07",
+      "language": "roman_gondi",
+      "link": "https://www.facebook.com/sample",
+      "preview": "Sab maane aru bhayi — gondi bhasha mein gondvana ki sabse badi baat hai ki hamari apni masaram lipi hai. Koitor bhasha jeevan badhe!"
+    },
+    {
+      "platform": "telegram",
+      "author": "Gondi News (sample)",
+      "date": "2026-09-06",
+      "language": "devanagari_gondi",
+      "link": "https://t.me/s/sample/1",
+      "preview": "सब् माने कुन् गौरव् अरु अधिकार् ना मांला ते जनंजात् सुतन्तर्ता अरु बराबर् ता हक् पुट्ताल। अवेन् भायि लेह्का माने मासि बेव्हार् कियाना आन्द।"
+    },
+    {
+      "platform": "youtube",
+      "author": "Gondi Bhasha Sikhen (sample)",
+      "date": "2026-09-05",
+      "language": "masaram_gondi",
+      "link": "https://www.youtube.com/watch?v=UfSetAy1ysU",
+      "preview": "𑴤𑴫𑴦𑴱𑴤 𑴎"
+    },
+    {
+      "platform": "telegram",
+      "author": "Gondwana Papers",
+      "date": "2023-03-06",
+      "language": "possible_gondi",
+      "link": "https://t.me/gondwana_papers/37",
+      "preview": "Gondwana Papers pinned Deleted message"
+    },
+    {
+      "platform": "telegram",
+      "author": "Gondwana Papers",
+      "date": "2022-10-29",
+      "language": "other",
+      "link": "https://t.me/gondwana_papers/29",
+      "preview": "BSc 2nd Year Sem III Chemistry Paper 1&2"
+    },
+    {
+      "platform": "telegram",
+      "author": "Gondwana Papers",
+      "date": "2022-10-22",
+      "language": "possible_gondi",
+      "link": "https://t.me/gondwana_papers/21",
+      "preview": "Happy Diwali to all 🪔 From Gondwana Papers https://Gondwana-Papers.Blogspot.Com"
+    },
+    {
+      "platform": "telegram",
+      "author": "Gondwana Papers",
+      "date": "2022-06-03",
+      "language": "other",
+      "link": "https://t.me/gondwana_papers/17",
+      "preview": "ExamTimeTable.pdf"
+    },
+    {
+      "platform": "telegram",
+      "author": "Gondwana Papers",
+      "date": "2022-05-20",
+      "language": "possible_gondi",
+      "link": "https://t.me/gondwana_papers/13",
+      "preview": "Download Gondwana University Gadchiroli Old Papers Free Click here : https://gondwana-papers.blogspot.com It is totally free for all of you...."
+    }
+  ]
+}
