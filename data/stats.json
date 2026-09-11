@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-11T06:44:12Z",
-  "total_posts": 15,
+  "generated_at": "2026-09-11T07:37:14Z",
+  "total_posts": 35,
   "gondi_posts": 5,
-  "possible_gondi": 7,
+  "possible_gondi": 9,
   "by_platform": {
-    "youtube": 6,
+    "youtube": 26,
     "telegram": 7,
     "facebook": 1,
     "instagram": 1
@@ -13,11 +13,11 @@
     "masaram_gondi": 1,
     "devanagari_gondi": 2,
     "roman_gondi": 2,
-    "other": 3,
-    "possible_gondi": 7
+    "other": 21,
+    "possible_gondi": 9
   },
-  "total_words": 3427,
-  "unique_words": 895,
+  "total_words": 5209,
+  "unique_words": 1486,
   "masaram_chars": 6,
   "gunjala_chars": 0,
   "sample_count": 5,

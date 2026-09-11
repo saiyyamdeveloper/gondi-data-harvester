@@ -9,3 +9,8 @@ venv/
 
 # Build output (wrangler deploy ke liye) — data ka original data/corpus/ mein hai
 deploy/
+
+# WhatsApp exports — PRIVATE data, repo mein KABHI nahi
+exports/
+
+.wrangler/

@@ -1,0 +1,24 @@
+# LINK SOURCES — ek line mein ek link (ya WhatsApp export file ka path)
+#
+# Kaise add karein:
+#   python tools/add_source.py <link>        (best — hara bhi karega + save bhi)
+#   Ya is file mein seedha paste karo — roz ka harvest yahin se hoga.
+#
+# Supported types:
+#   YouTube channel / playlist / video:
+#     https://www.youtube.com/@channel_handle
+#     https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxx
+#     https://youtu.be/XXXXXXXXXXX
+#   Telegram (sirf PUBLIC channels):
+#     https://t.me/channelname
+#   Facebook / Instagram page (v1 mein manual export, link yaad ke liye):
+#     https://www.facebook.com/...
+#     https://www.instagram.com/...
+#   WhatsApp (exported .txt file ka path):
+#     exports/whatsapp_gondwana_group.txt
+#
+# Example (uncomment karke apna link daalo):
+# https://www.youtube.com/channel/UCx8yOCyyDClp966kEhwzEmw
+
+
+https://www.youtube.com/channel/UCx8yOCyyDClp966kEhwzEmw

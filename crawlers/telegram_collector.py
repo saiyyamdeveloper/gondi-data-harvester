@@ -29,9 +29,21 @@ _LINK_RE = re.compile(r"^/(?:s/)?[^/]+/\d+$")
 
 
 def clean_channel(raw: str) -> str:
-    """'@xyz', 'xyz', 't.me/xyz', URL — sabse sirf channel name."""
-    raw = (raw or "").strip().split("#", 1)[0].strip()
-    raw = raw.replace("t.me/", "").replace("telegram.me/", "").replace("telegram.dog/", "")
+    """'@xyz', 'xyz', 't.me/xyz', 'https://t.me/s/xyz/12' — sabse sirf channel name."""
+    raw = (raw or "").strip().split("#", 1)[0].strip().split("?")[0].strip("/")
+    if "://" in raw:
+        p = urlparse(raw)
+        host = (p.netloc or "").lower()
+        if "t.me" not in host and "telegram" not in host:
+            return raw
+        parts = [x for x in (p.path or "").split("/") if x]
+        if parts and parts[0] == "s":
+            parts = parts[1:]
+        return parts[0].lstrip("@") if parts else raw
+    for prefix in ("t.me/", "telegram.me/", "telegram.dog/"):
+        if raw.startswith(prefix):
+            raw = raw[len(prefix):]
+            break
     return raw.lstrip("@").strip("/")
 
 

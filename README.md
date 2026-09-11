@@ -165,7 +165,53 @@ python tools/push_to_pages.py            # (wrangler chalta hai — npm hona cha
 - GitHub repo banao → yeh folder push karo → Settings → Secrets →
   `YOUTUBE_API_KEY` (optional) daalo → bas.
 
-## Dashboard (Phase 10)
+## 🔗 Link Ingestion — "Link do, Gondi data aayega"
+
+Koi bhi social media link do — uska Gondi content corpus mein aa jayega,
+aur source yaad rehta hai taaki **roz subah ka auto-harvest** wahan se naya
+data uthata rahe.
+
+```bash
+# YouTube channel — saare recent videos ke transcripts
+python tools/add_source.py https://www.youtube.com/@gondibhasha_sikhen
+
+# Telegram public channel — latest + purani messages (pagination)
+python tools/add_source.py https://t.me/some_gondi_channel
+
+# Ek single YouTube video
+python tools/add_source.py https://youtu.be/XXXXXXXXXXX
+
+# WhatsApp group — pehle app se export karo:
+#   Group → group name → ⋮ → Export chat → Without media → .txt file
+#   File ko exports/ folder mein rakho, phir:
+python tools/add_source.py exports/whatsapp_gondwana_group.txt
+
+# Facebook / Instagram page (v1: manual export ki guidance milti hai)
+python tools/add_source.py https://www.facebook.com/somepage
+```
+
+### Har platform ki feasibility (honest)
+
+| Platform | Kya milta hai | Kaise |
+|---|---|---|
+| **YouTube** channel | ✅ Saare recent videos ke transcripts (default 30, `--max 100` tak) | Page scrape / Data API (key ho to) |
+| **Telegram** channel | ✅ Latest + `?before=` pagination se ~60-150 purani messages | t.me/s preview |
+| **Telegram** full history | 🕒 Channel owner ko apna bot add karna hoga (BotFather se banayein) — v2 mein implement | Bot API |
+| **Facebook** page | ⚠️ Public pages ka scraping ToS-violation hai. **Apni page** ho to Meta Graph API; doosri page ka content browser se copy karke inbox mein daalein | Manual/API |
+| **Instagram** | ⚠️ Same — login-wall hai. Apne account ke liye Graph API baad mein | Manual/API |
+| **WhatsApp** group | ✅ "Export chat (Without media)" wala .txt — parser built-in | App se export karo |
+
+⚠️ **WhatsApp privacy:** yeh corpus PUBLIC hai (GitHub + Cloudflare).
+Sirf aise groups import karo jinke aap member ho aur jiska content share
+karne mein aap comfortable ho. Export files `exports/` mein rehti hain jo
+**repo mein commit NAHI hoti** (gitignored).
+
+### Sources ka registry
+Har add kiya gaya link `config/sources.txt` mein save hota hai. Roz subah 06:30 IST
+ka GitHub Actions run har source dobara check karta hai — naye posts aate
+jaate hain, duplicates dedup se hat jaate hain.
+
+## Data Browser / Dashboard (Phase 10)
 
 `python tools/serve_dashboard.py` → http://localhost:8080
 

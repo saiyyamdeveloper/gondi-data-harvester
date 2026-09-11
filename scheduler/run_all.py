@@ -50,6 +50,30 @@ def main() -> None:
     chosen = [p.strip() for p in args.platforms.split(",") if p.strip()]
     all_posts = []
 
+    # LINK SOURCES — config/sources.txt (YouTube channels, Telegram channels,
+    # WhatsApp exports, FB/IG links) — add_source.py se registered
+    src_file = ROOT / "config" / "sources.txt"
+    if src_file.exists():
+        print("\n=== LINK SOURCES ===")
+        try:
+            from crawlers.source_collector import harvest_source  # noqa: E402
+            for line in src_file.read_text(encoding="utf-8").splitlines():
+                line = line.split("#", 1)[0].strip()
+                if not line:
+                    continue
+                print(f"  source: {line[:70]}")
+                try:
+                    got = harvest_source(line)
+                except Exception as e:
+                    print(f"    [error] {type(e).__name__}: {e}")
+                    got = []
+                for p in got:
+                    p.language = detect(p.text)["language"]
+                print(f"    {len(got)} posts mile")
+                all_posts += got
+        except Exception as e:
+            print(f"  [warn] sources skip kiye: {e}")
+
     for name in chosen:
         mod = PLATFORM_MODULES.get(name)
         if not mod:
